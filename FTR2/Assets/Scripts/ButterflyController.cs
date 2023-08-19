@@ -21,7 +21,7 @@ public class ButterflyController : MonoBehaviour
     }
     void Update()
     {
-        float normalizedValue = normalizedValue = Mathf.InverseLerp(0f, 100f, Values.value);
+        float normalizedValue = Mathf.InverseLerp(0f, 100f, Values.value);
         float value = Mathf.Lerp(0,1, normalizedValue);
         animator.SetFloat("valueY",value);
         animControl(value);
