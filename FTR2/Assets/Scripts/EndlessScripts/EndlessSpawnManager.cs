@@ -25,6 +25,8 @@ public class EndlessSpawnManager : MonoBehaviour
     {
         spawnedDaisyCount = 0;
         spawnedBeeCount = 0;
+        spawnedBeeList.Clear();
+        spawnedDaisyList.Clear();
     }
 
     private void Update() 

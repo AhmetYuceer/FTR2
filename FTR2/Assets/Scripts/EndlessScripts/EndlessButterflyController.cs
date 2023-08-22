@@ -19,11 +19,13 @@ public class EndlessButterflyController : MonoBehaviour
     [Header("Forward Movement")]
     [SerializeField] private float moveSpeed;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip daisySoundEffect;
+
     private void Start() 
     {
         gameManager = FindObjectOfType<EndlessGameManager>();
     }
-
 
     private void Update() 
     {
@@ -55,12 +57,15 @@ public class EndlessButterflyController : MonoBehaviour
         if (other.gameObject.CompareTag("Bee"))
         {
             isDead = true;
+            EndlessGameManager.isDead = isDead;
         }
         else if(other.gameObject.CompareTag("Daisy"))
         {
+            audioSource.PlayOneShot(daisySoundEffect);
             EndlessSpawnManager.spawnedDaisyCount--;
             EndlessSpawnManager.spawnedDaisyList.Remove(other.gameObject);
             Destroy(other.gameObject);
+            EndlessGameManager.AddScore();
         }
         else if(other.gameObject.CompareTag("SpawnArea"))
         {
